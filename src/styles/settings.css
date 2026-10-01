@@ -1,0 +1,32 @@
+.settings-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 480px;
+}
+
+.settings-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.settings-danger-zone {
+  border-color: var(--danger);
+}
+
+.settings-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: var(--danger-bg);
+  border-radius: var(--radius-input);
+  padding: var(--space-3);
+}

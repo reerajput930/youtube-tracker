@@ -1,0 +1,270 @@
+/* ---------- Base tokens (same in every mood) ---------- */
+:root {
+  --page: #ece5d6;
+  --sidebar: #efe8da;
+  --card: #fffcf5;
+  --ink: #221f1a;
+  --border: #221f1a;
+  --border-soft: #d9cfb8;
+  --border-input: #c9bfa6;
+  --text: #221f1a;
+  --text-2: #5e5a4f;
+  --text-3: #726c5e;
+
+  --warn-bg: #fbefd3;
+  --warn: #7a4b00;
+  --ok-bg: #dff1e3;
+  --ok: #1c6533;
+
+  --sponsor: #2f5bd3;
+  --sponsor-bg: #e3e9f8;
+  --sponsor-ink: #23428f;
+
+  --short: #d9638a;
+  --short-tint: #fbe6ed;
+  --short-ink: #99294a;
+
+  --ticket: #e4d2a0;
+  --ticket-ink: #6b5a2c;
+  --sticky: #f5d968;
+  --sticky-ink: #4f3f0a;
+  --tape-pink: #eeb9c6;
+  --tape-blue: #aecbe8;
+
+  --danger: #b3261e;
+  --danger-bg: #fbe4e1;
+
+  --radius-card: 18px 22px 16px 20px;
+  --radius-card-flip: 20px 16px 22px 18px;
+  --radius-button: 12px 14px 12px 14px;
+  --radius-input: 10px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 40px;
+
+  --shadow-hard: 3px 3px 0 rgba(34, 31, 26, 0.12);
+  --shadow-hard-sm: 2px 2px 0 rgba(34, 31, 26, 0.14);
+
+  --font-title: "Caveat", "Bricolage Grotesque", cursive;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+}
+
+/* ---------- Mood themes ---------- */
+/* fired-up (default) */
+:root,
+[data-mood="fired-up"] {
+  --accent: #c8391e;
+  --on-accent: #ffffff;
+  --accent-mid: color-mix(in srgb, var(--accent) 45%, white);
+  --accent-soft: color-mix(in srgb, var(--accent) 28%, white);
+  --accent-tint: color-mix(in srgb, var(--accent) 12%, white);
+  --accent-ink: color-mix(in srgb, var(--accent) 65%, black);
+}
+
+[data-mood="calm"] {
+  --accent: #e5b000;
+  --on-accent: #392c00;
+  --accent-mid: color-mix(in srgb, var(--accent) 15%, white);
+  --accent-soft: color-mix(in srgb, var(--accent) 28%, white);
+  --accent-tint: color-mix(in srgb, var(--accent) 12%, white);
+  --accent-ink: color-mix(in srgb, var(--accent) 40%, black);
+}
+
+[data-mood="energetic"] {
+  --accent: #b9510d;
+  --on-accent: #ffffff;
+  --accent-mid: color-mix(in srgb, var(--accent) 45%, white);
+  --accent-soft: color-mix(in srgb, var(--accent) 28%, white);
+  --accent-tint: color-mix(in srgb, var(--accent) 12%, white);
+  --accent-ink: color-mix(in srgb, var(--accent) 65%, black);
+}
+
+[data-mood="focus"] {
+  --accent: #2f5bd3;
+  --on-accent: #ffffff;
+  --accent-mid: color-mix(in srgb, var(--accent) 45%, white);
+  --accent-soft: color-mix(in srgb, var(--accent) 28%, white);
+  --accent-tint: color-mix(in srgb, var(--accent) 12%, white);
+  --accent-ink: color-mix(in srgb, var(--accent) 65%, black);
+  --sponsor: #6b3fb5;
+  --sponsor-bg: #ece5f7;
+  --sponsor-ink: #4a2a82;
+}
+
+[data-mood="chill"] {
+  --accent: #1e7a52;
+  --on-accent: #ffffff;
+  --accent-mid: color-mix(in srgb, var(--accent) 45%, white);
+  --accent-soft: color-mix(in srgb, var(--accent) 28%, white);
+  --accent-tint: color-mix(in srgb, var(--accent) 12%, white);
+  --accent-ink: color-mix(in srgb, var(--accent) 65%, black);
+}
+
+[data-mood="creative"] {
+  --accent: #6b3fb5;
+  --on-accent: #ffffff;
+  --accent-mid: color-mix(in srgb, var(--accent) 45%, white);
+  --accent-soft: color-mix(in srgb, var(--accent) 28%, white);
+  --accent-tint: color-mix(in srgb, var(--accent) 12%, white);
+  --accent-ink: color-mix(in srgb, var(--accent) 65%, black);
+}
+
+/* ---------- Reset / base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--page);
+  background-image: radial-gradient(color-mix(in srgb, var(--ink) 7%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Decorative: washi tape ---------- */
+.washi {
+  position: absolute;
+  width: 68px;
+  height: 26px;
+  opacity: 0.9;
+  box-shadow: var(--shadow-hard-sm);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.washi-pink {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--tape-pink),
+    var(--tape-pink) 6px,
+    color-mix(in srgb, var(--tape-pink) 70%, white) 6px,
+    color-mix(in srgb, var(--tape-pink) 70%, white) 12px
+  );
+}
+
+.washi-blue {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--tape-blue),
+    var(--tape-blue) 6px,
+    color-mix(in srgb, var(--tape-blue) 70%, white) 6px,
+    color-mix(in srgb, var(--tape-blue) 70%, white) 12px
+  );
+}
+
+.washi-tl {
+  top: -12px;
+  left: 18px;
+  transform: rotate(-8deg);
+}
+
+.washi-tr {
+  top: -12px;
+  right: 18px;
+  transform: rotate(7deg);
+}
+
+/* ---------- Decorative: sticky note ---------- */
+.sticky-note {
+  position: relative;
+  background: var(--sticky);
+  color: var(--sticky-ink);
+  border-radius: 2px 14px 6px 12px;
+  padding: var(--space-3) var(--space-3);
+  box-shadow: var(--shadow-hard);
+  transform: rotate(-1.5deg);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.sticky-note strong {
+  display: block;
+  font-family: var(--font-title);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+/* ---------- Eyebrow / mono label ---------- */
+.eyebrow-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: lowercase;
+  letter-spacing: 0.01em;
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 3px 10px;
+  box-shadow: var(--shadow-hard-sm);
+}

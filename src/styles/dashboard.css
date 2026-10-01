@@ -1,0 +1,467 @@
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  overflow: hidden;
+}
+
+.stat-card-label {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-2);
+}
+
+.stat-card-value {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 800;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.stat-card-value-sep {
+  color: var(--text-2);
+  font-weight: 400;
+}
+
+.stat-card-value small {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+.stat-card-sub {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.stat-card-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stat-card-clip {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  color: var(--text-3);
+  transform: rotate(18deg);
+}
+
+/* ---------- Film strip (uploads-this-month progress) ---------- */
+.film-strip {
+  display: flex;
+  gap: 3px;
+  background: var(--ink);
+  border-radius: 8px;
+  padding: 6px 8px;
+  position: relative;
+}
+
+.film-strip::before,
+.film-strip::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 4px;
+  background-image: radial-gradient(circle, var(--card) 1.4px, transparent 1.6px);
+  background-size: 10px 4px;
+  background-repeat: repeat-x;
+  opacity: 0.6;
+}
+
+.film-strip::before {
+  top: 1px;
+}
+
+.film-strip::after {
+  bottom: 1px;
+}
+
+.film-cell {
+  flex: 1;
+  min-width: 0;
+  height: 26px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  color: #fff;
+}
+
+.film-cell-long {
+  background: var(--accent);
+}
+
+.film-cell-short {
+  background: var(--short);
+}
+
+.film-cell-blank {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.film-cell-empty {
+  border: 1.5px dashed rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Ticket stub (all-time) ---------- */
+.stat-card-ticket {
+  background: var(--ticket);
+  color: var(--ticket-ink);
+  border-style: solid;
+  position: relative;
+  padding-right: 34px;
+}
+
+.stat-card-ticket .stat-card-label,
+.stat-card-ticket .stat-card-sub {
+  color: var(--ticket-ink);
+  opacity: 0.8;
+}
+
+.ticket-no {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  writing-mode: vertical-rl;
+  border-left: 1.5px dashed var(--ticket-ink);
+  opacity: 0.75;
+}
+
+/* ---------- Streak dots ---------- */
+.streak-strip {
+  display: flex;
+  gap: 6px;
+}
+
+.streak-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-input);
+  background: transparent;
+}
+
+.streak-dot.filled {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------- Dashboard main grid ---------- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.dashboard-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ---------- Calendar ---------- */
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-2);
+  text-align: left;
+  padding: 0 4px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.calendar-cell {
+  height: 84px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--page) 55%, var(--card));
+  border: 1.5px dashed var(--border-soft);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.calendar-cell-blank {
+  background: transparent;
+  border: none;
+}
+
+.calendar-cell-day {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-size: 13px;
+  color: var(--text-3);
+  font-weight: 600;
+}
+
+.calendar-day-dot {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.calendar-day-dot.long {
+  background: var(--accent);
+}
+
+.calendar-day-dot.short {
+  background: var(--short);
+}
+
+.calendar-cell-sponsor-badge {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  color: var(--sponsor);
+}
+
+.calendar-cell-today {
+  border: 2px solid var(--danger);
+  border-radius: 10px;
+}
+
+/* ---------- Needs attention ---------- */
+.attention-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.attention-sticky {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+
+.attention-sticky-chip {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--card);
+}
+
+.attention-pinned {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  border: 1.5px dashed var(--border-soft);
+  border-radius: 10px;
+  padding: var(--space-3);
+  position: relative;
+}
+
+.attention-pin {
+  color: var(--text-3);
+  transform: rotate(-20deg);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.attention-item-body {
+  flex: 1;
+}
+
+.attention-item-body strong {
+  display: block;
+  font-size: 14px;
+}
+
+.attention-item-body span {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.next-to-film {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1.5px dashed var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.next-to-film-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.checklist-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.checklist-row svg {
+  color: var(--text-3);
+  flex-shrink: 0;
+}
+
+/* ---------- This month by type (tally marks) ---------- */
+.type-tallies {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tally-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.tally-label {
+  width: 72px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-2);
+}
+
+.tally-marks {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 22px;
+}
+
+.tally-mark {
+  width: 4px;
+  height: 100%;
+  border-radius: 2px;
+}
+
+.tally-mark-long {
+  background: var(--accent);
+}
+
+.tally-mark-short {
+  background: var(--short);
+}
+
+.tally-mark-sponsored {
+  background: var(--sponsor);
+}
+
+.tally-count {
+  width: 20px;
+  text-align: right;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.last-upload-note {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1.5px dashed var(--border-soft);
+  font-size: 13px;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- Phone stacking ---------- */
+@media (max-width: 900px) {
+  .stat-cards {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .stat-cards .stat-card-goal {
+    grid-column: 1 / -1;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* round-dot calendar */
+  .calendar-weekdays {
+    padding: 0;
+  }
+
+  .calendar-grid {
+    gap: 4px;
+  }
+
+  .calendar-cell {
+    height: 34px;
+    width: 34px;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .calendar-cell-day {
+    position: static;
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .calendar-day-dot {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .calendar-cell-sponsor-badge {
+    display: none;
+  }
+
+  .calendar-cell-today {
+    border-radius: 999px;
+  }
+
+  /* needs attention: show only the most urgent row */
+  .attention-list > *:not(:first-child) {
+    display: none;
+  }
+}

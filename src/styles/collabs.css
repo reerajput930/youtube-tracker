@@ -1,0 +1,243 @@
+.collabs-summary {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-2);
+  flex-wrap: wrap;
+}
+
+.collabs-summary strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.collab-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  align-items: start;
+}
+
+.collab-column {
+  background: var(--sidebar);
+  border-radius: var(--radius-card);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 80px;
+}
+
+.collab-column-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.status-dot.pitched {
+  background: #9c9890;
+}
+
+.status-dot.agreed {
+  background: #2f5bd3;
+}
+
+.status-dot.filming {
+  background: var(--warn);
+}
+
+.status-dot.posted {
+  background: var(--accent);
+}
+
+.status-dot.paid {
+  background: var(--ok);
+}
+
+.collab-column-count {
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+.collab-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  padding: var(--space-3);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.collab-card.selected {
+  border: 2px solid var(--accent);
+}
+
+.collab-card strong {
+  font-size: 14px;
+}
+
+.collab-card .collab-card-meta {
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.collab-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.collab-card-amount {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---------- Detail panel ---------- */
+.collab-detail {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: var(--space-4);
+}
+
+.collab-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.status-steps {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+.status-step {
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-input);
+  background: var(--card);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.status-step.done {
+  color: var(--ok);
+  border-color: var(--ok-bg);
+  background: var(--ok-bg);
+}
+
+.status-step.current {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--card);
+}
+
+.deliverables-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.deliverable-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.deliverable-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  border: 2px solid var(--border-input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  flex-shrink: 0;
+}
+
+.deliverable-check.done {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: white;
+}
+
+.deliverable-body {
+  flex: 1;
+}
+
+.deliverable-body strong {
+  display: block;
+  font-size: 14px;
+}
+
+.deliverable-body span {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.payment-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.payment-amount {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: var(--font-title);
+}
+
+.payment-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.deliverable-picker {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+@media (max-width: 1100px) {
+  .collab-board {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .collab-board {
+    grid-template-columns: 1fr;
+  }
+
+  .collab-detail {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,160 @@
+.export-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.export-settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.export-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.export-field-group > label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.range-toggle {
+  display: flex;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-button);
+  overflow: hidden;
+}
+
+.range-toggle button {
+  flex: 1;
+  height: 44px;
+  border: none;
+  background: var(--card);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.range-toggle button.selected {
+  background: var(--text);
+  color: var(--card);
+}
+
+.filetype-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-input);
+  padding: var(--space-3);
+  cursor: pointer;
+}
+
+.filetype-option.selected {
+  border-color: var(--accent);
+  background: var(--accent-tint);
+}
+
+.filetype-option input {
+  margin-top: 4px;
+}
+
+.filetype-option strong {
+  display: block;
+  font-size: 14px;
+}
+
+.filetype-option span {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.include-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: 14px;
+}
+
+.include-row label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.include-row span.count {
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.export-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+.export-preview-name {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.export-preview-table-wrap {
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  max-height: 480px;
+}
+
+.export-preview-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13px;
+}
+
+.export-preview-table th,
+.export-preview-table td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.export-preview-table thead th {
+  background: var(--sidebar);
+  font-weight: 700;
+}
+
+.export-preview-tabs {
+  display: flex;
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  gap: var(--space-2);
+}
+
+.export-preview-tab {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-input);
+  background: var(--card);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.export-preview-tab.selected {
+  background: var(--text);
+  color: var(--card);
+  border-color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .export-layout {
+    grid-template-columns: 1fr;
+  }
+}

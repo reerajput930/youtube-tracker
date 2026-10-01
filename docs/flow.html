@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Upload Tracker — How it works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --page: #f6f4ef;
+    --sidebar: #efece4;
+    --card: #ffffff;
+    --border: #e4e0d8;
+    --text: #17171a;
+    --text-2: #5e5b55;
+    --text-3: #6a665e;
+    --accent: #c8391e;
+    --accent-tint: #fbe9e4;
+    --sponsor: #2f5bd3;
+    --sponsor-bg: #e3e9f8;
+    --ok: #1c6533;
+    --ok-bg: #dff1e3;
+    --warn: #7a4b00;
+    --warn-bg: #fbefd3;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--page);
+    color: var(--text);
+    font-family: "Instrument Sans", system-ui, sans-serif;
+  }
+  @page { size: A4; margin: 0; }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 14mm 16mm;
+  }
+  h1, h2, h3 {
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    margin: 0;
+  }
+  p { margin: 0; }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6mm;
+  }
+  .logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo svg { display: block; }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .header .tagline {
+    font-size: 13px;
+    color: var(--text-2);
+    margin-top: 2px;
+  }
+
+  .questions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 7mm;
+  }
+  .question {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 9px 11px;
+    font-size: 11px;
+    color: var(--text-2);
+    line-height: 1.35;
+  }
+  .question strong {
+    display: block;
+    color: var(--text);
+    font-size: 11.5px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 4mm 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .section-title .num {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    background: var(--text);
+    color: var(--page);
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 6mm;
+    margin-bottom: 6mm;
+  }
+
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 8px;
+  }
+  .flow-row:last-child { margin-bottom: 0; }
+  .flow-row .row-label {
+    width: 20mm;
+    flex-shrink: 0;
+    font-size: 10.5px;
+    color: var(--text-3);
+    font-weight: 600;
+  }
+  .box {
+    background: var(--sidebar);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .box .sub {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 400;
+    color: var(--text-2);
+    margin-top: 1px;
+  }
+  .box.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .box.accent .sub { color: rgba(255,255,255,0.85); }
+  .box.sponsor { background: var(--sponsor-bg); color: var(--sponsor); border-color: var(--sponsor-bg); }
+  .box.sponsor .sub { color: var(--sponsor); opacity: .75; }
+  .box.ok { background: var(--ok-bg); color: var(--ok); border-color: var(--ok-bg); }
+  .box.dashed { background: var(--card); border-style: dashed; color: var(--text-2); }
+
+  .arrow {
+    flex: 0 0 auto;
+    width: 7mm;
+    text-align: center;
+    color: var(--text-3);
+    font-size: 14px;
+  }
+  .flex1 { flex: 1; min-width: 0; }
+
+  .v2-grid {
+    display: flex;
+    gap: 6mm;
+  }
+  .v2-col { flex: 1; }
+  .v2-col .flow-row .row-label { width: auto; margin-bottom: 2px; display:block; }
+  .v2-col .flow-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .v2-col .flow-row .arrow { display:none; }
+  .v2-col .box { width: 100%; text-align: left; }
+  .v2-mini-arrow {
+    font-size: 13px;
+    color: var(--text-3);
+    margin: 2px 0 2px 6px;
+  }
+
+  .steps {
+    display: flex;
+    gap: 6px;
+  }
+  .step {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 9px;
+    position: relative;
+  }
+  .step .step-num {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+  .step .step-text {
+    font-size: 10.5px;
+    line-height: 1.3;
+    color: var(--text);
+  }
+  .step-chevron {
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid var(--border);
+    border-right: 2px solid var(--border);
+    transform: translateY(-50%) rotate(45deg);
+    background: var(--page);
+    z-index: 2;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8mm;
+    padding-top: 5mm;
+    border-top: 1px solid var(--border);
+  }
+  .stack {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-2);
+    background: var(--sidebar);
+    border-radius: 999px;
+    padding: 4px 10px;
+  }
+  .footer .note {
+    font-size: 10px;
+    color: var(--text-3);
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="logo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7-11-7z" fill="white"/></svg>
+    </div>
+    <div>
+      <h1>Upload Tracker — how it works</h1>
+      <div class="tagline">Coding with Ree · a posting + brand-deal tracker for one YouTube channel</div>
+    </div>
+  </div>
+
+  <div class="questions">
+    <div class="question"><strong>On track?</strong>Uploads this month vs. your monthly goal</div>
+    <div class="question"><strong>Posting weekly?</strong>Current streak, last 8 weeks</div>
+    <div class="question"><strong>Deals status?</strong>Collabs from pitch to paid</div>
+    <div class="question"><strong>Need a report?</strong>One click to Excel or CSV</div>
+  </div>
+
+  <div class="section-title"><span class="num">1</span> Version 1 — runs in the browser</div>
+  <div class="panel">
+    <div class="flow-row">
+      <span class="row-label">EVERYDAY USE</span>
+      <div class="box flex1">React UI<span class="sub">Dashboard · Videos · Collabs · Export</span></div>
+      <span class="arrow">→</span>
+      <div class="box flex1">Storage module<span class="sub">the only code that touches storage</span></div>
+      <span class="arrow">→</span>
+      <div class="box flex1">localStorage<span class="sub">this device only</span></div>
+    </div>
+    <div class="flow-row">
+      <span class="row-label">EXPORT</span>
+      <div class="box flex1">Export page<span class="sub">pick month, pick file type</span></div>
+      <span class="arrow">→</span>
+      <div class="box flex1">SheetJS<span class="sub">builds the workbook</span></div>
+      <span class="arrow">→</span>
+      <div class="box flex1 accent">.xlsx / .csv<span class="sub">downloaded to your device</span></div>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="num">2</span> Version 2 — synced to your Google account</div>
+  <div class="panel">
+    <div class="v2-grid">
+      <div class="v2-col">
+        <div class="flow-row">
+          <span class="row-label">SIGN IN</span>
+          <div class="box">Sign in with Google</div>
+        </div>
+        <div class="v2-mini-arrow">↓</div>
+        <div class="flow-row">
+          <div class="box">Firebase Auth<span class="sub">verifies it's you</span></div>
+        </div>
+        <div class="v2-mini-arrow">↓</div>
+        <div class="flow-row">
+          <div class="box ok">Same storage module<span class="sub">now points at Firestore, not localStorage</span></div>
+        </div>
+        <div class="v2-mini-arrow">↓</div>
+        <div class="flow-row">
+          <div class="box dashed">Firestore<span class="sub">users/&#123;you&#125;/videos, /collabs, /settings</span></div>
+        </div>
+      </div>
+      <div class="v2-col">
+        <div class="flow-row">
+          <span class="row-label">AUTO-PULL</span>
+          <div class="box">YouTube Data API<span class="sub">read-only, your channel only</span></div>
+        </div>
+        <div class="v2-mini-arrow">↓</div>
+        <div class="flow-row">
+          <div class="box sponsor">Checks your uploads playlist<span class="sub">first run: your whole history · after that: just what's new</span></div>
+        </div>
+        <div class="v2-mini-arrow">↓</div>
+        <div class="flow-row">
+          <div class="box accent">New videos appear automatically<span class="sub">title + length pulled in, type guessed from length</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="num">3</span> Day to day, once you're signed in</div>
+  <div class="panel">
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Post a video on YouTube</div><div class="step-chevron"></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Open the app, or tap "Sync now"</div><div class="step-chevron"></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">It shows up on the dashboard — no typing</div><div class="step-chevron"></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Check your goal, streak, and calendar</div><div class="step-chevron"></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Move brand deals through Collabs</div><div class="step-chevron"></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-text">Export the month as Excel when you need it</div></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="stack">
+      <span class="chip">React + Vite</span>
+      <span class="chip">React Router</span>
+      <span class="chip">Firebase Auth</span>
+      <span class="chip">Firestore</span>
+      <span class="chip">YouTube Data API v3</span>
+      <span class="chip">SheetJS</span>
+      <span class="chip">date-fns</span>
+    </div>
+    <div class="note">Upload Tracker · built for Coding with Ree</div>
+  </div>
+
+</div>
+</body>
+</html>
